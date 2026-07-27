@@ -76,19 +76,25 @@ resource "yandex_mdb_mysql_cluster" "my_cluster" {
     default_authentication_plugin = "MYSQL_NATIVE_PASSWORD"
   }
 
-  # Первый хост
+  # Первый хост (обязательный)
   host {
     zone      = var.default_zone
     subnet_id = yandex_vpc_subnet.develop.id
   }
 
-  # Второй хост (опционально)
+  # Второй хост (опционально, если включена высокая доступность)
   dynamic "host" {
     for_each = var.db_high_availability ? [1] : []
     content {
       zone      = var.db_second_zone
       subnet_id = yandex_vpc_subnet.develop.id
     }
+  }
+
+
+  lifecycle {
+    ignore_changes = all 
+
   }
 }
 
@@ -117,4 +123,17 @@ resource "yandex_container_registry" "my_registry" {
 
 resource "yandex_container_repository" "my_repository" {
   name = "${yandex_container_registry.my_registry.id}/${var.repository_name}"
+}
+
+
+resource "local_file" "outputs" {
+  content = jsonencode({
+    vm_public_ip   = yandex_compute_instance.platform.network_interface[0].nat_ip_address
+    vm_private_ip  = yandex_compute_instance.platform.network_interface[0].ip_address
+    db_fqdn        = yandex_mdb_mysql_cluster.my_cluster.host[0].fqdn
+    db_port        = 3306
+    registry_id    = yandex_container_registry.my_registry.id
+    repository_name = yandex_container_repository.my_repository.name
+  })
+  filename = "${path.module}/terraform_outputs.json"
 }
