@@ -38,6 +38,33 @@
 Используя user-data (cloud-init), установите Docker и Docker Compose (см. Задания 5 модуля «Виртуализация и контейнеризация»).
 ``
 
+
+
+````
+Ответ 
+
+cloud-init.tpl
+packages:
+  - apt-transport-https
+  - ca-certificates
+  - curl
+  - software-properties-common
+  - gnupg
+
+runcmd:
+  - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+  - echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
+  - apt-get update
+  - apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
+  - systemctl enable docker
+  - systemctl start docker
+  - usermod -aG docker ubuntu
+````
+
+### Скриншот-3 к заданию 2
+![Скриншот 3](https://github.com/roomantix/final-project-terraform/blob/main/img/3.png)
+
+
 ------
 
 ### Задание 3. 
@@ -46,6 +73,20 @@
 Опишите Docker файл (см. Задания 5 «Виртуализация и контейнеризация») c web-приложением и сохраните контейнер в Container Registry.
 ``
 
+
+````
+Ответ
+Для данных целей я решил использовать скрипты:
+
+deploy-all.sh - для сборки и  передачи в Container Registry.
+
+deploy.sh - для развертывания приложения на удаленной виртуальной машине.
+
+````
+
+
+
+
 ------
 
 ### Задание 4. 
@@ -53,6 +94,16 @@
 ``
 Завяжите работу приложения в контейнере на БД в Yandex Cloud.
 ``
+
+````
+Ответ
+
+Я сделал переменные и передал их при развертывание 
+приложения на удаленной машине.
+
+````
+
+
 
 ------
 

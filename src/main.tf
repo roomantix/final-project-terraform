@@ -131,9 +131,47 @@ resource "local_file" "outputs" {
     vm_public_ip   = yandex_compute_instance.platform.network_interface[0].nat_ip_address
     vm_private_ip  = yandex_compute_instance.platform.network_interface[0].ip_address
     db_fqdn        = yandex_mdb_mysql_cluster.my_cluster.host[0].fqdn
+    db_name        = yandex_mdb_mysql_database.my_db.name
     db_port        = 3306
     registry_id    = yandex_container_registry.my_registry.id
     repository_name = yandex_container_repository.my_repository.name
   })
   filename = "${path.module}/terraform_outputs.json"
+}
+
+# ВМ
+
+
+resource "null_resource" "deploy_app" {
+  triggers = {
+    always_run = timestamp()
+  }
+
+  connection {
+    type        = "ssh"
+    user        = "ubuntu"
+    private_key = file(var.ssh_private_key_path)
+    host        = var.vm_ip
+  }
+
+  provisioner "file" {
+    source      = var.service_account_key_file
+    destination = "/home/ubuntu/authorized_key.json"
+  }
+
+  provisioner "file" {
+    source      = "${path.module}/deploy.sh"
+    destination = "/tmp/deploy.sh"
+  }
+
+ provisioner "remote-exec" {
+  inline = [
+  "chmod +x /tmp/deploy.sh",
+  "/tmp/deploy.sh '${var.registry_id}' '/home/ubuntu/authorized_key.json' '${var.db_host}' '${var.db_port}' '${var.db_name}' '${var.db_user}' '${var.db_password}'"
+  ]
+}
+
+  depends_on = [
+    yandex_compute_instance.platform
+  ]
 }

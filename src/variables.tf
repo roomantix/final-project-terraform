@@ -212,3 +212,34 @@ variable "repository_name" {
   type        = string
   default     = "my-app"
 }
+
+
+
+#deploy
+
+variable "vm_ip" {
+  description = "Публичный IP ВМ"
+  type        = string
+}
+
+variable "registry_id" {
+  description = "ID Container Registry"
+  type        = string
+}
+
+variable "ssh_private_key_path" {
+  description = "Путь к приватному SSH-ключу"
+  type        = string
+  default     = ""
+}
+
+variable "db_port" {
+  description = "Порт MySQL"
+  type        = number
+  default     = 3306
+}
+
+variable "db_host" {
+  description = "FQDN хоста MySQL"
+  type        = string
+}

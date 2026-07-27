@@ -27,3 +27,8 @@ output "repository_name" {
   value       = yandex_container_repository.my_repository.name
   description = "Полное имя репозитория"
 }
+output "db_name" {
+  value       = yandex_mdb_mysql_database.my_db.name
+  description = "Имя базы данных"
+}
+       

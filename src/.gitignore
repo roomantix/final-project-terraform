@@ -13,3 +13,6 @@ personal.auto.tfvars
 
 *.json
 *.json*
+
+*.env
+*.env*
