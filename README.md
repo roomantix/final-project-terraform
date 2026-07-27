@@ -16,6 +16,19 @@
 ``` 
 
 
+### Скриншот-1 к заданию 1
+![Скриншот 1](https://github.com/roomantix/final-project-terraform/blob/main/img/1.png)
+
+```
+Ответ.
+
+Я не стал делать это через веб интерфейс  yandex cloud, а сделал все через main.tf
+Исходный код - 
+```  
+
+
+
+
 ### Задание 2. 
 
 ``
