@@ -121,6 +121,8 @@ https://github.com/roomantix/final-project-terraform/blob/main/src/deploy.sh
 
 Положил пароль от БД в LockBox и добавил переменные при
 выполнение скриптов.
+
+Исходный код - https://github.com/roomantix/final-project-terraform/tree/main/src
 ````
 
 ### Скриншот-4 к заданию 5
