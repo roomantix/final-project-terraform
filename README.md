@@ -23,7 +23,7 @@
 Ответ.
 
 Я не стал делать это через веб интерфейс  yandex cloud, а сделал все через main.tf
-Исходный код - 
+Исходный код - https://github.com/roomantix/final-project-terraform/blob/main/src/main.tf
 ```  
 
 
