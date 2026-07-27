@@ -116,13 +116,12 @@ https://github.com/roomantix/final-project-terraform/blob/main/src/deploy.sh
 Положите пароли от БД в LockBox и настройте интеграцию с Terraform так, чтобы пароль для БД брался из LockBox.
 ``
 
-``
+````
 Ответ
 
 Положил пароль от БД в LockBox и добавил переменные при
 выполнение скриптов.
-
-``
+````
 
 ### Скриншот-4 к заданию 5
 ![Скриншот 4](https://github.com/roomantix/final-project-terraform/blob/main/img/4.png)
