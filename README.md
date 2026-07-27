@@ -19,6 +19,8 @@
 ### Скриншот-1 к заданию 1
 ![Скриншот 1](https://github.com/roomantix/final-project-terraform/blob/main/img/1.png)
 
+### Скриншот-2 к заданию 1
+![Скриншот 1](https://github.com/roomantix/final-project-terraform/blob/main/img/2.png)
 ```
 Ответ.
 
