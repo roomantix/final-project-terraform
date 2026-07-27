@@ -75,7 +75,7 @@ terraform apply -auto-approve \
     -var="db_port=$DB_PORT" \
     -var="db_name=$DB_NAME" \
     -var="db_user=$DB_USER" \
-    -var="db_password=$DB_PASSWORD"
+
 
 # --- Вывод информации ---
 echo ">>> Готово! Приложение должно быть доступно по адресу: http://${VM_IP}:5000"

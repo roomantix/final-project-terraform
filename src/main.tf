@@ -108,8 +108,7 @@ resource "yandex_mdb_mysql_database" "my_db" {
 resource "yandex_mdb_mysql_user" "my_user" {
   cluster_id = yandex_mdb_mysql_cluster.my_cluster.id
   name       = var.db_user
-  password   = var.db_password
-
+  password   = local.db_password_from_lockbox
   permission {
     database_name = yandex_mdb_mysql_database.my_db.name
     roles         = ["ALL"]
@@ -167,7 +166,7 @@ resource "null_resource" "deploy_app" {
  provisioner "remote-exec" {
   inline = [
   "chmod +x /tmp/deploy.sh",
-  "/tmp/deploy.sh '${var.registry_id}' '/home/ubuntu/authorized_key.json' '${var.db_host}' '${var.db_port}' '${var.db_name}' '${var.db_user}' '${var.db_password}'"
+  "/tmp/deploy.sh '${var.registry_id}' '/home/ubuntu/authorized_key.json' '${var.db_host}' '${var.db_port}' '${var.db_name}' '${var.db_user}' '${local.db_password_from_lockbox}'"
   ]
 }
 

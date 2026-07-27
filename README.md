@@ -79,8 +79,10 @@ runcmd:
 Для данных целей я решил использовать скрипты:
 
 deploy-all.sh - для сборки и  передачи в Container Registry.
+https://github.com/roomantix/final-project-terraform/blob/main/src/deploy-all.sh
 
 deploy.sh - для развертывания приложения на удаленной виртуальной машине.
+https://github.com/roomantix/final-project-terraform/blob/main/src/deploy.sh
 
 ````
 
@@ -98,8 +100,9 @@ deploy.sh - для развертывания приложения на удал
 ````
 Ответ
 
-Я сделал переменные и передал их при развертывание 
+Я сделал переменные и передал при развертывание 
 приложения на удаленной машине.
+
 
 ````
 
@@ -112,3 +115,14 @@ deploy.sh - для развертывания приложения на удал
 ``
 Положите пароли от БД в LockBox и настройте интеграцию с Terraform так, чтобы пароль для БД брался из LockBox.
 ``
+
+``
+Ответ
+
+Положил пароль от БД в LockBox и добавил переменные при
+выполнение скриптов.
+
+``
+
+### Скриншот-4 к заданию 5
+![Скриншот 4](https://github.com/roomantix/final-project-terraform/blob/main/img/4.png)
