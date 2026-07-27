@@ -21,10 +21,11 @@
 
 ### Скриншот-2 к заданию 1
 ![Скриншот 1](https://github.com/roomantix/final-project-terraform/blob/main/img/2.png)
+
 ```
 Ответ.
 
-Я не стал делать это через веб интерфейс  yandex cloud, а сделал все через main.tf
+Я не стал делать это через веб интерфейс  yandex cloud, а сделал все через код.
 Исходный код - https://github.com/roomantix/final-project-terraform/blob/main/src/main.tf
 ```  
 
